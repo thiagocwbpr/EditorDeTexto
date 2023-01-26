@@ -37,3 +37,31 @@ static void Menu() {
             break;
     }
 }
+
+static void Criar() {
+    Console.Clear();
+    string text = "";
+    Console.WriteLine("DIGITE SEU TEXTO ABAIXO: (PRESSIONE 'ESC' PARA SAIR) ");
+    Console.WriteLine("\n\n--------------------------------------------\n\n");
+    do {
+        text += Console.ReadLine();
+        text += Environment.NewLine;
+    }
+    while (Console.ReadKey().Key != ConsoleKey.Escape);
+
+    Console.WriteLine("TEXTO FINALIZADO!");
+    Salvar(text);
+
+    static void Salvar(string SaveText) {
+        Console.Write("\n\nPOR FAVOR, INFORME O CAMINHO PARA SALVAR O ARQUIVO: ");
+        string path = Console.ReadLine();
+
+        using (var file = new StreamWriter(path)) {
+
+            file.Write(SaveText);
+        }
+        Console.WriteLine("\n\nARQUIVO SALVO COM SUCESSO! PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU.");
+        Console.ReadKey();
+        Menu();
+    }
+}
