@@ -139,3 +139,39 @@ static void Atualizar() {
     Console.Clear();
     Menu();
 }
+static void Deletar() {
+
+    Console.Clear();
+    Console.Write("\n\nINFORME O CAMINHO DO ARQUIVO QUE DESEJA EXCLUIR: ");
+    string path = Console.ReadLine();
+
+    Console.Clear();
+    Console.WriteLine("\nCONSULTANDO O ARQUIVO.....");
+    Console.WriteLine("\n\nPOR FAVOR AGUARDE.....");
+    Thread.Sleep(2000);
+    Console.Clear();
+
+
+    if (File.Exists(path)) {
+
+        File.Delete(path);
+
+        Console.WriteLine("\n\nNOTA DELETADA COM SUCESSO! \n\n");
+    }
+    else {
+        Console.Write("\n\nO CAMINHO INFORMADO NAO EXISTE, POR FAVOR VERIFIQUE O CAMINHO DIGITADO.");
+        Console.Write("\n\nPRESSIONE QUALQUER TECLA PARA CONTINUAR OU 'ESC' PARA SAIR");
+
+        if (Console.ReadKey().Key != ConsoleKey.Escape) {
+
+            Deletar();
+        }
+        else {
+            Menu();
+        }
+    }
+    Console.Write("\n\nPRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU.");
+    Console.ReadKey();
+    Menu();
+
+}
