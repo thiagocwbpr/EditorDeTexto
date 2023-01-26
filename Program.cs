@@ -65,3 +65,52 @@ static void Criar() {
         Menu();
     }
 }
+
+static void Consultar() {
+
+    Console.Clear();
+    string text = "";
+    string path = "";
+    Console.WriteLine("\n\n **************************************************");
+    Console.Write("\n\n INFORME O CAMINHO QUE DESEJA CONSULTAR O ARQUIVO:");
+    path = Console.ReadLine();
+
+    try {
+
+        using (StreamReader sr = new StreamReader(path)) {
+
+            text = sr.ReadToEnd();
+        }
+        Console.Clear();
+        Console.WriteLine("\n\n CONSULTANDO ARQUIVO NO DIRETORIO INFORMADO....");
+        Thread.Sleep(3000);
+        Console.Clear();
+        Console.WriteLine("\n\n A SUA CONSULTA RETORNOU O SEGUINTE TEXTO:\n");
+        Console.WriteLine("\n ----------------INICIO DA MENSAGEM--------------------\n\n");
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(text);
+        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("\n ------------------FIM DA MENSAGEM---------------------\n\n");
+    }
+    catch (Exception) {
+
+        Console.Clear();
+        Console.Write("\n\n ARQUIVO NAO EXISTE NO DIRETORIO INFORMADO! \n\n POR FAVOR, VERIFIQUE O DIRETORIO! ");
+        Console.ReadKey();
+        Consultar();
+    }
+    Console.Write("\n\n DESEJA CONSULTAR UM NOVO ARQUIVO: 'SIM' 'NAO' : ");
+    string option = Console.ReadLine();
+    string LowerOption = option.ToLower();
+
+    if (LowerOption == "nao") {
+        Console.Clear();
+        Menu();
+    }
+    else {
+        Console.Clear();
+        Consultar();
+    }
+}
