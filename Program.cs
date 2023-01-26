@@ -1,4 +1,5 @@
 ﻿
+Menu();
 
 static void Menu() {
 
