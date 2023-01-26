@@ -37,7 +37,6 @@ static void Menu() {
             break;
     }
 }
-
 static void Criar() {
     Console.Clear();
     string text = "";
@@ -65,7 +64,6 @@ static void Criar() {
         Menu();
     }
 }
-
 static void Consultar() {
 
     Console.Clear();
@@ -113,4 +111,31 @@ static void Consultar() {
         Console.Clear();
         Consultar();
     }
+}
+static void Atualizar() {
+
+    Console.Clear();
+    DateTime data = DateTime.Now;
+    Console.Write("\n\nINFORME O CAMINHO DO ARQUIVO QUE DESEJA ATUALIZAR: ");
+    string path = Console.ReadLine();
+
+
+    if (!File.Exists(path)) {
+        Console.WriteLine("O CAMINHO ESPECIFICADO NÃO EXISTE, POR FAVOR VERIFIQUE NOVAMENTE.");
+        Console.ReadKey();
+        Atualizar();
+    }
+    else {
+
+        using (StreamWriter writer = new StreamWriter(path, true)) {
+            writer.WriteLine($"ESSE TEXTO FOI CRIADO NO DIA {data.ToString("dd/MM/yyyy")} ");
+        }
+    }
+
+    Console.WriteLine("\n\nADICIONADO A DATA DE CRIAÇÃO NO ARQUIVO.\n\n\n");
+
+    Console.WriteLine("\n\nPRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU.");
+    Console.ReadKey();
+    Console.Clear();
+    Menu();
 }
